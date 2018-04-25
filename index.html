@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+       
+   <button id = "start">start game</button>
+
+    <div class="time">
+    </div>
+
+    <div class="questionsection">
+        <h4 id="question"></h4>
+        <div class="container">
+            <h5 id="a"></h5>
+            <h5 id="b"></h5>
+            <h5 id="c"></h5>
+            <h5 id="d"></h5>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var number = 30;
+        var questionCount=0;
+        var intervalId;
+        
+        $("#start").on("click",run);
+     
+    
+
+    
+
+
+        function run() {
+            clearInterval(intervalId);
+            intervalId = setInterval(decrement, 1000);
+            $("#start").attr("style","display: none");
+            showQuestion();
+        }
+
+        function decrement() {
+            
+            number--;
+            $(".time").html("time reaming: " + number);
+            
+
+
+            //  intervalId = setInterval(stopwatch.count, 1000);
+            //  clockRunning = true;
+    
+
+            if (number === 0) {
+
+
+                alert("Time up, move to next question");
+                clearInterval(intervalId);
+                nextQuestion();
+            
+        }
+}
+        
+
+
+
+        var myQuestion = [
+            {
+                question: "Which class did Severus Snape always want to teach?",
+                answers: {
+                    a: "Defence Against the Dart Arts",
+                    b: "Potions",
+                    c: "Charms",
+                    d: "Transfiguration"
+                }, correctAnswer: 'a'
+            }, {
+                question: "Which of these is not a wizarding school?",
+                answers: {
+                    a: "Durmstrang",
+                    b: "Mahoutokoro",
+                    c: "Uagadou",
+                    d: "Slavdovoretz"
+                }, correctAnswer: 'd'
+            }
+        ];
+
+
+        function showQuestion() {
+            var output = [];
+            var answer;
+            console.log("1");
+
+
+            if (questionCount == 0) {
+                output = myQuestion[0]
+                $("#question").text(output.question);
+                $("#a").text(output.answers.a);
+                $("#b").text(output.answers.b);
+                $("#c").text(output.answers.c);
+                $("#d").text(output.answers.d);
+
+                console.log(output.correctAnswer);
+           
+
+                $("#container").on("click", "#a", function () {
+                    
+                    if("a"== output.correctAnswer){
+                        console.log("Congratulations") 
+                        //().html("Congratulations");
+                    }
+
+                }).on("click", "#b", function () {
+                    if("b"== output.correctAnswer){
+                        console.log("Congratulations") 
+                     
+                    }
+
+                }).on("click", "#c", function () {
+                    if("c"== output.correctAnswer){
+                        console.log("Congratulations") 
+                     
+                    }
+
+                }).on("click", "#d", function () {
+                    if("d"== output.correctAnswer){
+                        console.log("Congratulations") 
+                     
+                    }
+
+                });
+
+
+
+            }
+
+
+        }
+
+
+        function nextQuestion() {
+            questionCount++;
+            var output = [];
+
+            output = myQuestion[questinCount];
+
+        }
+    
+    });
+
+    </script>
+</body>
+
+</html>
