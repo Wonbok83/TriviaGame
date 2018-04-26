@@ -23,6 +23,7 @@
     <div class="result">
         <div class="questionsection">
             <h4 id="question"></h4>
+            <div id="showimage"></div>
             <div class="container">
                 <h5 id="a"></h5>
                 <h5 id="b"></h5>
@@ -51,10 +52,10 @@
             //run the game. 
 
             function resetTimer() {
-                number = 30; 
+                number = 30;
                 clearInterval(intervalId);
                 intervalId = setInterval(decrement, 1000);
-                
+
             }
 
             function run() {
@@ -65,7 +66,7 @@
             }
 
             function decrement() {
-              
+
                 number--;
                 $(".time").html("time reaming: " + number);
 
@@ -81,7 +82,7 @@
 
                 }
             }
-             //timer   
+            //timer   
 
             var myQuestion = [  //questions in Array 
                 {
@@ -91,7 +92,8 @@
                         b: "Potions",
                         c: "Charms",
                         d: "Transfiguration"
-                    }, correctAnswer: 'a'
+                    }, correctAnswer: 'a',
+                        image : "img/snape.jpeg"
                 }, {
                     question: "Which of these is not a wizarding school?",
                     answers: {
@@ -99,7 +101,8 @@
                         b: "Mahoutokoro",
                         c: "Uagadou",
                         d: "Slavdovoretz"
-                    }, correctAnswer: 'd'
+                    }, correctAnswer: 'd',
+                    image : "img/school.jpeg"
                 }, {
                     question: "Which of these is a type of Love Potion??",
                     answers: {
@@ -107,7 +110,8 @@
                         b: "Amortentia",
                         c: "Ployjuice potion",
                         d: "Veritaserum"
-                    }, correctAnswer: 'b'
+                    }, correctAnswer: 'b',
+                    image : "img/potion.jpeg"
                 }, {
                     question: "Which of these are not one of Hagrid's many pets?",
                     answers: {
@@ -115,7 +119,8 @@
                         b: "Fluffy",
                         c: "Aragog",
                         d: "Norberta"
-                    }, correctAnswer: 'a'
+                    }, correctAnswer: 'a',
+                    image : "img/hagrid.jpeg"
                 }, {
                     question: "Which Hogwarts house did Moaning Myrtle belong in?",
                     answers: {
@@ -123,7 +128,8 @@
                         b: "Slytherin",
                         c: "Ravenclaw",
                         d: "Hufflepuff"
-                    }, correctAnswer: 'c'
+                    }, correctAnswer: 'c',
+                    image : "img/ghost.jpeg"
                 }
             ];
 
@@ -138,6 +144,7 @@
                 $("#b").text(output.answers.b);
                 $("#c").text(output.answers.c);
                 $("#d").text(output.answers.d);
+                $("#showimage").html("<img src=" +output.image+" width='400px'>");
 
                 console.log(output.correctAnswer);
 
@@ -204,11 +211,19 @@
 
 
             function result() {
-                alert("CorrectAnswers: "+ correctAnswerNum +"\n"+ 
-                      "IncorrectAnswers: "+ incorrectAnswerNum +"\n"+
-                      "Unanswered: "+ unAnsweredNum);
+                alert("CorrectAnswers: " + correctAnswerNum + "\n" +
+                    "IncorrectAnswers: " + incorrectAnswerNum + "\n" +
+                    "Unanswered: " + unAnsweredNum);
+
+                //reset 
+                number = 30;
                 questionCount = 0;
-               
+                intervalId;
+                correctAnswerNum = 0;
+                incorrectAnswerNum = 0;
+                unAnsweredNum = 0;
+                output = [];
+
             }
 
 
@@ -219,12 +234,17 @@
 
             function Congratulations() {
                 console.log("correct");
+                //$(".result").html("<img src='img/cong.gif' width='400px'/>" ); 
+
+                //after 3 seconds 
                 nextQuestion();
             }
 
             function fail() {
                 //shwoing image and mesaage 
                 console.log("Wrong");
+                //$(".result").html("<img src='img/fail.gif' width='400px'/>");
+
                 nextQuestion();
             }
 
@@ -240,8 +260,8 @@
                 if (questionCount == 5) {
                     result();
                 } else {
-                run();
-                question();
+                    run();
+                    question();
                 }
             }
 
