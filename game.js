@@ -123,7 +123,7 @@ $(document).ready(function () {
                 console.log("end-------------------");
                 alert("CorrectAnswers: " + correctAnswerNum + "\n" +
                     "IncorrectAnswers: " + incorrectAnswerNum + "\n" +
-                    "Unanswered: " + unAnsweredNum + "\n" + "press 'Enter' or click 'Ok' to restart the game");
+                    "Unanswered: " + unAnsweredNum + "\n" + "Press 'Enter' or Click 'Ok' to restart the game");
                     
                     //reset 
                     number = 30;
