@@ -123,7 +123,7 @@ $(document).ready(function () {
                 console.log("end-------------------");
                 alert("CorrectAnswers: " + correctAnswerNum + "\n" +
                     "IncorrectAnswers: " + incorrectAnswerNum + "\n" +
-                    "Unanswered: " + unAnsweredNum + "\n" + "press 'Enter' to restart the game");
+                    "Unanswered: " + unAnsweredNum + "\n" + "press 'Enter' or click 'Ok' to restart the game");
                     
                     //reset 
                     number = 30;
@@ -137,13 +137,6 @@ $(document).ready(function () {
                     question();
                     $(".questionsection").attr("style", "display: box");
             }, 1000);
-
-
-
-            
-      
-      
-
     }
 
 
