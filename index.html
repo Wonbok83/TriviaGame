@@ -10,264 +10,60 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="game.js"></script>
 </head>
 
 <body>
+  
+    <div class="background_music">
 
-    <button id="start">start game</button>
+         
+         <audio autoplay controls="controls">
 
-    <div class="time">
+            <source src="img/themesong.mp3" type="audio/mp3">
+
+         </audio>
     </div>
 
 
-    <div class="result">
+
+    <header class="top">
+        <h1 class="text-center">Harry Potter Quiz Game</h1>
+    </header>
+
+
+
+    <div class="text-center container">
+        <div class = "row">
+            <div class ="col-sm-12">
+        <button id="start">start game</button>
+
+        <div class="time"> </div>
+            </div>
+    </div>
+
+    <div class ="row"> 
+        <div class = "col-sm-12">
+        <div class="result"></div>
         <div class="questionsection">
             <h4 id="question"></h4>
             <div id="showimage"></div>
-            <div class="container">
+            <div class="container1">
                 <h5 id="a"></h5>
                 <h5 id="b"></h5>
                 <h5 id="c"></h5>
                 <h5 id="d"></h5>
+                </div>
             </div>
         </div>
+     </div>   
+
     </div>
 
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            //variables 
-            var number = 30; //timer
-            var questionCount = 0;
-            var intervalId; //second
-            var correctAnswerNum = 0;
-            var incorrectAnswerNum = 0;
-            var unAnsweredNum = 0;
-            var output = []; //showing question 
-
-
-
-            $("#start").on("click", run);
-            //run the game. 
-
-            function resetTimer() {
-                number = 30;
-                clearInterval(intervalId);
-                intervalId = setInterval(decrement, 1000);
-
-            }
-
-            function run() {
-                clearInterval(intervalId);
-                intervalId = setInterval(decrement, 1000);
-                $("#start").attr("style", "display: none");
-                question();
-            }
-
-            function decrement() {
-
-                number--;
-                $(".time").html("time reaming: " + number);
-
-
-
-                if (number === 0) {
-
-
-                    alert("Time up, move to next question");
-                    clearInterval(intervalId);
-                    outOfTime();
-                    unAnsweredNum++;
-
-                }
-            }
-            //timer   
-
-            var myQuestion = [  //questions in Array 
-                {
-                    question: "Which class did Severus Snape always want to teach?",
-                    answers: {
-                        a: "Defence Against the Dart Arts",
-                        b: "Potions",
-                        c: "Charms",
-                        d: "Transfiguration"
-                    }, correctAnswer: 'a',
-                        image : "img/snape.jpeg"
-                }, {
-                    question: "Which of these is not a wizarding school?",
-                    answers: {
-                        a: "Durmstrang",
-                        b: "Mahoutokoro",
-                        c: "Uagadou",
-                        d: "Slavdovoretz"
-                    }, correctAnswer: 'd',
-                    image : "img/school.jpeg"
-                }, {
-                    question: "Which of these is a type of Love Potion??",
-                    answers: {
-                        a: "Felix felicis",
-                        b: "Amortentia",
-                        c: "Ployjuice potion",
-                        d: "Veritaserum"
-                    }, correctAnswer: 'b',
-                    image : "img/potion.jpeg"
-                }, {
-                    question: "Which of these are not one of Hagrid's many pets?",
-                    answers: {
-                        a: "Grawp",
-                        b: "Fluffy",
-                        c: "Aragog",
-                        d: "Norberta"
-                    }, correctAnswer: 'a',
-                    image : "img/hagrid.jpeg"
-                }, {
-                    question: "Which Hogwarts house did Moaning Myrtle belong in?",
-                    answers: {
-                        a: "Gryffindor  ",
-                        b: "Slytherin",
-                        c: "Ravenclaw",
-                        d: "Hufflepuff"
-                    }, correctAnswer: 'c',
-                    image : "img/ghost.jpeg"
-                }
-            ];
-
-
-            function question() {
-                output = [];
-                // var answer;
-
-                output = myQuestion[questionCount];
-                $("#question").text(output.question);
-                $("#a").text(output.answers.a);
-                $("#b").text(output.answers.b);
-                $("#c").text(output.answers.c);
-                $("#d").text(output.answers.d);
-                $("#showimage").html("<img src=" +output.image+" width='400px'>");
-
-                console.log(output.correctAnswer);
-
-
-                $(".container").on("click", "#a", function () {
-
-                    if ("a" == output.correctAnswer) {
-                        console.log("Congratulations")
-                        //().html("Congratulations");
-                        Congratulations();
-                        correctAnswerNum++;
-                        resetTimer();
-                    } else {
-                        fail();
-                        incorrectAnswerNum++;
-                        resetTimer();
-                    }
-
-                }).on("click", "#b", function () {
-                    if ("b" == output.correctAnswer) {
-                        console.log("Congratulations")
-                        Congratulations();
-                        correctAnswerNum++;
-                        resetTimer();
-                    } else {
-                        fail();
-                        incorrectAnswerNum++;
-                        resetTimer();
-                    }
-
-                }).on("click", "#c", function () {
-                    if ("c" == output.correctAnswer) {
-                        console.log("Congratulations")
-                        Congratulations();
-                        correctAnswerNum++;
-                        resetTimer();
-                    } else {
-                        fail();
-                        incorrectAnswerNum++;
-                        resetTimer();
-                    }
-
-
-                }).on("click", "#d", function () {
-                    if ("d" == output.correctAnswer) {
-                        console.log("Congratulations")
-                        Congratulations();
-                        correctAnswerNum++;
-                        resetTimer();
-                    } else {
-                        fail();
-                        incorrectAnswerNum++;
-                        resetTimer();
-                    }
-
-
-                });
-
-
-
-
-            }
-
-
-
-            function result() {
-                alert("CorrectAnswers: " + correctAnswerNum + "\n" +
-                    "IncorrectAnswers: " + incorrectAnswerNum + "\n" +
-                    "Unanswered: " + unAnsweredNum);
-
-                //reset 
-                number = 30;
-                questionCount = 0;
-                intervalId;
-                correctAnswerNum = 0;
-                incorrectAnswerNum = 0;
-                unAnsweredNum = 0;
-                output = [];
-
-            }
-
-
-
-
-
-
-
-            function Congratulations() {
-                console.log("correct");
-                //$(".result").html("<img src='img/cong.gif' width='400px'/>" ); 
-
-                //after 3 seconds 
-                nextQuestion();
-            }
-
-            function fail() {
-                //shwoing image and mesaage 
-                console.log("Wrong");
-                //$(".result").html("<img src='img/fail.gif' width='400px'/>");
-
-                nextQuestion();
-            }
-
-            function outOfTime() {
-                console.log("out of time");
-                nextQuestion();
-                resetTimer();
-            }
-
-
-            function nextQuestion() {
-                questionCount++;
-                if (questionCount == 5) {
-                    result();
-                } else {
-                    run();
-                    question();
-                }
-            }
-
-        });
-
-    </script>
+    
 </body>
 
 </html>
