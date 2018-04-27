@@ -55,7 +55,52 @@ $(document).ready(function () {
                 d: "Hufflepuff"
             }, correctAnswer: 'c',
             image: "img/ghost.jpeg"
-        }
+        }, {
+            question: "What's the name of Tonks and Lupin's son?",
+            answers: {
+                a: "Theodore",
+                b: "Lyall",
+                c: "James",
+                d: "Edward"
+            }, correctAnswer: 'd',
+            image: "img/TonksandLupin.jpeg"
+        }, {
+            question: "What is the name of Fleur Delacour's sister?",
+            answers: {
+                a: "Victoire",
+                b: "Apolline",
+                c: "Dominique",
+                d: "Gabrielle"
+            }, correctAnswer: 'd',
+            image: "img/FleurDelacour.jpg"
+        }, {
+            question: "What's the name of Ron Weasley's great-aunt?",
+            answers: {
+                a: "Marge",
+                b: "Margot",
+                c: "Muriel",
+                d: "Marjorie"
+            }, correctAnswer: 'c',
+            image: "img/greatAunt.jpg"
+        }, {
+            question: "Which was not one of Voldemort's Horcruxes?",
+            answers: {
+                a: "Harry",
+                b: "Helga's diadem",
+                c: "Nagini",
+                d: "Tom Riddle's Diary"
+            }, correctAnswer: 'b',
+            image: "img/voldemort.jpeg"
+        }, {
+            question: "What's the name of Percy's wife?",
+            answers: {
+                a: "Audrey",
+                b: "Lucy",
+                c: "Rosie",
+                d: "Marjorie"
+            }, correctAnswer: 'a',
+            image: "img/percy.jpg"
+        },
         
 
 
@@ -83,7 +128,7 @@ $(document).ready(function () {
         $("#b").text(output.answers.b);
         $("#c").text(output.answers.c);
         $("#d").text(output.answers.d);
-        $("#showimage").html("<img src=" + output.image + " width='400px'>");
+        $("#showimage").html("<img src=" + output.image + " width='400px' height='200px'>");
 
         console.log(questionCount + ":" + output.correctAnswer);
     }
@@ -98,7 +143,7 @@ $(document).ready(function () {
     function nextQuestion() {
         console.log(questionCount);
         questionCount++;
-        if (questionCount == 5) {
+        if (questionCount == 10) {
             result();
         } else {
             question();
@@ -178,11 +223,11 @@ $(document).ready(function () {
         //$(this).attr('id')   or this.id         
 
         if ($(this).attr('id') == output.correctAnswer) {
-            console.log("correct");
+            alert("Correct");
             correctAnswerNum++;
 
         } else {
-            console.log("wrong");
+            alert("Wrong, the answer is   '"+ output.correctAnswer + "' ");
             incorrectAnswerNum++;
 
         }
